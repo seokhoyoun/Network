@@ -32,9 +32,10 @@ public class TCPClient2 {
 					socket.close();
 					br.close();
 					pw.close();
+					System.out.println("서버와의 연결이 종료되었습니다.");
 					break;
 				}
-				System.out.println(br.readLine());
+				System.out.println("Server : "+br.readLine());
 			}
 			
 			
@@ -45,7 +46,7 @@ public class TCPClient2 {
 				br.close();
 				pw.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("서버와의 연결이 종료되었습니다.");
 			}
 		}
 		

@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class TCPServer2 {
 	
@@ -31,6 +32,7 @@ public class TCPServer2 {
 	}
 
 	public static void onServer(ServerSocket server) {
+		Scanner sc = new Scanner(System.in);
 		try(Socket client = server.accept(); 
 				BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
 					PrintWriter pw = new PrintWriter(client.getOutputStream())){
@@ -44,12 +46,13 @@ public class TCPServer2 {
 					break;
 				}
 				System.out.println("받은 메세지 : "+cmes);
-				pw.println("Server received successfully....");
+				System.out.print("보낼 메세지 입력 : ");
+				pw.println(sc.nextLine());
 				pw.flush();
 			
 			}	
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("클라이언트와 연결이 종료되었습니다.");
 		}
 	}
 }
