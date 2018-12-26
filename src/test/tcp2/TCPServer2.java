@@ -41,6 +41,7 @@ public class TCPServer2 {
 				String cmes = br.readLine();
 				if(cmes.equals("quit")) {
 					pw.println("서버와의 연결을 종료합니다.");
+					pw.flush();
 					System.out.println(client.getInetAddress().getHostAddress()+" 연결이 종료되었습니다.");
 					client.close();
 					break;
