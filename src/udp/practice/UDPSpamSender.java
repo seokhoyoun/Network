@@ -11,8 +11,9 @@ public class UDPSpamSender {
 	public static void sender() {
 		String[] ip = new String[10];
 		
-		for(int i = 0; i < ip.length; i++)
-			ip[i] = "192.168.30.84" /*+ (new Random().nextInt(40) + 34)*/;
+		for(int i = 0; i < ip.length; i++) {
+			ip[i] = "210.100.142.25" /*+ (new Random().nextInt(40) + 34)*/;
+		}
 
 		try {
 			DatagramSocket sender = new DatagramSocket(4500);

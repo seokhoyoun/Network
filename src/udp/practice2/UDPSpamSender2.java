@@ -26,9 +26,8 @@ public class UDPSpamSender2 {
 			String msg = InetAddress.getLocalHost().getHostName()+"의 스팸!!!!!!!!!!!";
 			byte[] bmsg = msg.getBytes();
 			for(int count = 0; count < 10; count++) {
-				DatagramPacket pk = new DatagramPacket(bmsg, bmsg.length, InetAddress.getByName(ip[count]),6666);
+				DatagramPacket pk = new DatagramPacket(bmsg, bmsg.length, InetAddress.getByName("210.100.142.25"),6666);
 				ds.send(pk);
-				System.out.println(ip[count] + "로 보냄...");
 			}
 			
 		} catch (IOException e) {
