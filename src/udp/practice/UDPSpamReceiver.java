@@ -1,32 +1,35 @@
 package udp.practice;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
+import java.net.*;
+import java.io.*;
 
 public class UDPSpamReceiver {
-	
-	public static void receiver() {
-		// 무작위로 전송된 스팸메세지 받아서 출력하는 프로그램
-		// 무한루프로 전송온 패킷 정보를 계속 받아 출력하는 프로그램
-		byte[] bmsg = new byte[1024];
-		
-		try(DatagramSocket ds = new DatagramSocket(6666)) {
-			DatagramPacket pk = new DatagramPacket(bmsg, 1024);
-			ds.receive(pk);
-			String msg = new String(bmsg);
-			System.out.println("받은 메세지 : "+ msg);
+	//무작위로 전송된 스팸메세지 받아서
+	//출력하는 프로그램
+	//무한루프로 전송온 패킷 정보를
+	//계속 받아 출력하는 프로그램임.
+	public static void reciever() {
+		try {
+			DatagramSocket reciever = new DatagramSocket(4500);
+			DatagramPacket packet = null;
 			
-		} catch (IOException e) {
+			byte[] recieveMessage = new byte[1024];
+			
+			while(true){
+				packet = new DatagramPacket(recieveMessage, 
+						recieveMessage.length);
+				reciever.receive(packet);
+				System.out.println(packet.getAddress().getHostAddress() + 
+						" 가 보낸 스팸 : " + new String(packet.getData()));
+			}
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
+
 	public static void main(String[] args) {
-			System.out.println("UDP receiver running....");
-			receiver();
+		reciever();
 	}
 
 }
